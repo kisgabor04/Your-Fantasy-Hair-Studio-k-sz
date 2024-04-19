@@ -1,5 +1,0 @@
-Nem vagyok  robot ellenőrzése bejelentkezés előtt
-email cím megerősítés a regisztráció után
-jelszó megváltoztatási lehetőség
-időpont lemondás
-értesítés, hogy mikor lesz időpontja
