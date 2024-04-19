@@ -1,0 +1,333 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --grey: rgb(70, 70, 70);
+    --black: rgb(7, 7, 10);
+    --white: #f3f3f3;
+    --gold: #c1a01e;
+}
+.top {
+    background-image: linear-gradient(to right, var(--black), var(--grey));
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top img {
+    height: 30vh;
+}
+nav {
+    background-color: var(--black);
+    height: 50px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    font-size: 24px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: .5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    height: 100%;
+    
+}
+
+div a {
+    height: 100%;
+    width: 100vw;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#hairdresser, #user
+{
+    width: fit-content;
+    flex-direction: row;
+    align-items: center;
+    
+}
+a:hover {
+    background-color: var(--grey);
+    color: var(--gold);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    max-height: 50px;
+    border-radius: 5px;
+}
+
+.menuk {
+    margin-left: .5rem;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.bejelentkezes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: .5rem;
+}
+
+.bejelentkezett
+{
+    display: none;
+    flex-direction: row;
+    gap: 5px;
+    color: var(--white);
+    margin-right: 10px;
+    align-items: center;
+}
+.bejelentkezett img
+{
+    width: 35px;
+    height: 35px;
+    align-items: start;
+}
+.bejelentkezett button
+{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+
+.open
+{
+    display: flex;
+    justify-content: center;
+}
+
+.opening-hours
+{
+    width: 90vw;
+}
+
+.opening-hours-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 egyforma széles oszlop */
+    gap: 10px; /* Oszlopok közötti rés */
+}
+
+.day {
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Halvány szürke vonal az oszlopok között */
+}
+
+.hours {
+    padding: 10px;
+}
+
+
+
+
+h1
+{
+    margin-left: 3rem;
+}
+h6
+{
+    margin: 4rem;
+}
+
+.phone
+{
+    display: none;
+
+}
+
+.lenyilo
+{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white);
+    width:100%;
+    z-index: 2;
+    padding-top: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.lenyilo a
+{
+    text-decoration: none;
+    color: var(--black);
+    text-align: center;
+
+}
+
+.hidden
+{
+    display: none;
+}
+
+.flex
+{
+    display: flex;
+    justify-content: center;
+}
+
+.content
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 30px;
+    gap: 30px;
+}
+
+img
+{
+    border-radius: 5px;
+}
+
+
+
+footer
+{
+    background-color: var(--black);
+    color: var(--white);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    font-size: 18px;
+}
+
+/*Telefonos menü megjelenítése:*/
+
+@media (max-width:670px)
+{
+    *{margin: 0;padding: 0; box-sizing: border-box;}
+    .menuk
+    {
+        display: none;
+    }
+    .bejelentkezes 
+    {
+        display: none;
+    }
+    .phone
+    {
+       align-items: start;
+        display: block;
+        cursor: pointer;
+        margin-left: .5rem;
+        
+    } 
+    #hairdresser
+    {
+        display: none;
+    }
+    #user
+    {
+        display: none;
+    }
+
+    .menu
+    {
+        margin-right: 10px;
+    }
+    .menu1, .menu2, .menu3
+    {
+        color: var(--white);
+        
+        width: 35px;
+        height: 5px;
+        background-color: var(--white);
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+      
+    .change .menu1
+    {
+        transform: translate(0, 11px) rotate(-45deg);
+    }
+      
+    .change .menu2
+    {
+        opacity: 0;
+    }
+      
+    .change .menu3
+    {
+        transform: translate(0, -11px) rotate(45deg);
+    }
+    
+    .lenyilo
+    {
+        background-color: var(--white);
+        margin-left: -.5rem;
+        
+    }
+    a
+    {
+        margin: 0;
+        padding: -2px;
+    }
+    .opening-hours-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hours {
+        padding-left: 20px;
+    }
+    #slider
+    {
+        max-width:90vw;
+    }
+    #sliderdiv
+    {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .content
+    {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 30px;
+        gap: 30px;
+    }
+    .kép
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .kép img
+    {
+        width: 240px;
+        height: 240px;
+        border-radius: 10px;
+        margin: 10px;
+    }
+
+    @media(max-width:400px)
+    {
+        .top img{
+            width: 80vw;
+            height: 80vw;
+        }
+    }
+    
+}

@@ -1,0 +1,97 @@
+Elősször a név választás volt a probléma, mivel ez a weboldal nem egy létező fodrászat számára készült. 
+Ötletek: 
+Hairológia
+Supercuts
+Haj I am
+Fantasy hair lett a választás
+
+A következő probléma az volt, hogy létezik már ausztráliában és belgrádban is ilyen nevű hajszalon(fantasy hair studio), így valami más
+verziót kellett kitalálom és ekkor jött az ötlet, legyen Your fantasy hair studio. Megnéztem és nem találtam ilyen névvel rendelkező szalont.
+domain név is szabad(yourfantasyhairstudio.com)
+
+
+Logó tervező oldal: 
+https://smashinglogo.com/hu/
+Ez az oldal egy nagyon jó tervező lehetőséget nyújtott számomra, ugyanis a cégnév kitöltésével, színek megadásával nagyon jó logót készített, 
+a legjobb az volt, hogy ezt a logót utánna le is lehetett tölteni igyenesen. Van több féle lehetőség ezen az oldlon amit automatikusan megtervez.
+Ilyen például a cég kozosségi oldal kinézete, névjegykártya kinézete stb. Akár póló kinézetet is lehet val terveztetni, ez a rész viszon már fizetős.
+3 fajta opció van az oldalon ami 37500-47500 ft-ig terjed ki itt különböző szintektől függ, hogy mit kapunk érte. 
+
+Utánna olvastam a google ban, hogy melyik szín mit jelent és azok alapján választottam. 
+Logó színkódok:
+#11111f háttér
+#c1a01e kiegésszítő szín
+#ffffff fehér kiegésszítő
+
+Színátmenet
+szürke rgb 38,38,38
+
+A fekete és arany egy prémium érzést ad az ügyfelek számára a fehér pedig a letisztultság színe. 
+
+Favicont saját magam készítettem GIMP segítségével.
+3 óra
+
+Bejeletkezési menü
+
+kb 10 óra a design résszel kevés probléma volt
+
+
+A referencia képeket a bin képgeneráló ai-a készítette. Sokat gondolkoztam, hogy honnan  kellene szerezni a képeket, de eszembe jutott, hogy 
+miért ne generálhatnék ai segítségével képeket. EGy ideig keresgéltem, hogy melyik ai-t válasszam a képek elkészítéséhez, először a ChatGPT
+készítői által készített ai-t választottam, de annak nem működött már az ingyenes verziója, mert megteltek az erre kiadott helyek száma.
+Végül a bing képgeneráló ai-át használtam, mert ez ingyenes és szinte azonnal megcsinálja a képet. Az ai számára leírtam, hogy mit ábrázoljon a kép és 
+1 percen belül kész is volt 4 különböző kép. Az én esetemben ez volt a beírt szöveg: "Fodrászat üzlethelyiséget generálj ahol éppen egy fodrász egy ember haját vágja"
+https://www.bing.com/images/create?FORM=GENEXP
+
+
+
+
+#################### Weboldal programozás része ########################################
+
+
+Ezek után kezdődhetett is a programozási fázis a szakdolgozatomban. Az általam kigondolt menet az volt, hogy először egy főoldal fogad minket
+amin a menüpontokból ki lehet választani mit szeretnénk: Időpontfoglalás, Bejelentkezés vagy éppen ha még nincs fiókunk akkor új felhasználói
+fiókot is regisztrálhatunk. A fő oldal tartalmaz általános adatokat a fodrászatról, cikkeket a hajunk ápolásával kapcsolatban és hasznos tippeket
+trükköket is a hajunk egészségesen tartása érdekében. 
+
+####Főoldal kialakítása######
+
+Már a programozás alatt törekedtem arra, hogy az oldal reszponzív legyen ugyanis ez nagyon fontos egy oldal készítése során, ha egy
+felhasználónak nem tökéletesen és átláthatóan jelenik meg az oldal akkor előfordulhat, hogy nem fogja használni az az adott oldalt.
+
+
+használt oldalak: 
+w3school - ötletgyűjtés és esetlehes problémák megoldásához
+chatGPT - hibakeresés, ötlet gyűjtés, cikkek innen származnak
+bing ai- referencia képek
+
+
+Menü ikon: https://www.w3schools.com/howto/howto_css_menu_icon.asp
+
+5óra, 5 óra, 3 óra
+
+
+
+
+
+A naptárat grid használatával készítettem el, a konzulens tanárom tanácsára. Elősször próbáltam előre elkészített naptárat használni, 
+de úgy gondoltuk, hogy csak jobb az úgy ha én készítem el.
+
+Nehézségek a naptárkészítés során: 
+A naptár generálását először a Date() függvény segítségével akartam elkészíteni, csak rájöttem időközben, hogy egyszrűbb ha egy 
+JSON fájlból olvasom azt be. Ez a JSON fájl tárolja, hogy milyen nap hanyadikára esik, így könnyen ki lehet szűrni azt is, hogy milyen nappal
+kezdődik a hónap ugyan is ez okozta a nehézséget a Date() függvény használatakor. Kb 2 óra munka után kllett rádöbbennem, 
+hogy ezzel csak a saját munkámat nehezítem. A JSON elkészítésében segítségemre volt a chatGPT, ugyanis egy örökké valóság lett volna begépelni
+egyesével az összes napot. PHP segítségével van behívva a JSON fájl ami átadja a javascript számára, ami pedig megjeleníti az időponfoglaló oldalan
+a napok számát és nevét.
+
+
+
+profil icon:
+https://hu.pinterest.com/pin/785807834990247059/
+
+log out icon:
+https://www.flaticon.com/free-icon/logout_1828427?term=logout&page=1&position=1&origin=tag&related_id=1828427
+
+
+

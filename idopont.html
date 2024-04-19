@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./idopont.css">
+    <title>Időpontfoglalás</title>
+</head>
+
+<body>
+    <div class="top">
+        <img src="./img/hatternelkul.png" alt="Logó">
+    </div>
+    <nav>
+        <div class="menuk">
+            <div><a href="main.html">Főoldal</a></div>
+            <div><a href="araink.html">Áraink</a></div>
+            <div><a href="galeria.html">Galéria</a></div>
+        </div>
+        <div class="bejelentkezes">
+            <div><a href="./login.html">Belépés</a></div>
+            <div><a href="registration.html">Regisztráció</a></div>
+        </div>
+        <div class="bejelentkezett">
+            <div><a href="./idopontjaim.html" id="user">Időpontjaim</a></div>
+            <div><a href="./idopontok.html" id="hairdresser">Időpontok</a></div>
+            <img src="./img/profile-icon.jpg">
+            <div class="nev"></div>
+            <button class="kijelentkezes"><img src="./img/logout.png"></button>
+        </div>
+        <!--Telefonos menü-->
+        <div class="phone">
+
+            <div class="menu">
+                <div class="menu1"></div>
+                <div class="menu2"></div>
+                <div class="menu3"></div>
+            </div>
+            <div class="lenyilo">
+                <a href="./main.html">Főoldal</a>
+                <a href="./araink.html">Áraink</a>
+                <a href="./galeria.html">Galéria</a>
+                <div id="leidopontjaim" style="justify-content: center; align-items: center;"><a
+                        href="./idopontjaim.html">Időpontjaim</a></div>
+                <div id="leidopontok" style="justify-content: center; align-items: center;"><a
+                        href="./idopontok.html">Időpontok</a></div>
+                <a href="./login.html" id="belep">Belépés</a>
+                <a href="./registration.html" id="regisztral">Regisztráció</a>
+
+            </div>
+        </div>
+
+
+    </nav>
+    <main>
+        <h1>Kérjük válassza ki az időpontot!</h1>
+        <h3>Válasszon napot: </h3>
+
+        <div class="content">
+
+            <div class="naptar">
+                <div class="buttons">
+                    <button type="button" id="previousbutton" title="Előző hónap">
+                        <</button>
+                            <button type="button" id="actualbutton" title="Aktuális hónap">O</button>
+                            <button type="button" id="nextbutton" title="Követkető hónap">></button>
+                </div>
+                <div class="days">
+                    <div class="dayname">Hét</div>
+                    <div class="dayname">Ked</div>
+                    <div class="dayname">Szer</div>
+                    <div class="dayname">Csüt</div>
+                    <div class="dayname">Pén</div>
+                    <div class="dayname">Szom</div>
+                    <div class="dayname">Vas</div>
+                </div>
+                <div class="container">
+
+                </div>
+            </div>
+            <div class="honap">
+                <h3>Hónap: <label for="" class="kivhonap"></label></h3>
+            </div>
+
+            <div class="timeChoose">
+                <div class="choose">Válasszon az időpontok közül: ▼</div>
+                <div class="dates hidden">
+                    
+                    <!--Idő generálása-->
+                </div>
+            </div>
+        </div>
+
+        <h3 class="hidden" id="finishtag">Kiválasztott időpont: <label id="finish"></label></h3>
+
+        <div class="mitChoose">
+            <div class="choose2 ">Válasszon mit szeretne ▼</div>
+                <div class="mik hidden">
+                    <div class="mit">Hajvágás</div>
+                    <div class="mit">Festés</div>
+                    <div class="mit">Fodrászati kezelés</div>
+                    <div class="mit">Kiemelt szolgáltatások</div>
+                    <div class="mit">Egyéb szolgáltatások</div>
+                </div>
+        </div>
+        <h3 class="hidden" id="finish2tag">Szolgáltatás: <label id="finish2"></label></h3>
+        <button type="button" class="sendButton hidden">Foglalás leadása</button>
+        
+        
+        
+        <h1 class="success"></h1>
+
+        
+        <footer>&#169 Fodrász időpontkérő weboldal 2024</footer>
+
+    </main>
+    <script>
+        //Telefonos menü megjelenítése:
+        const menu = document.querySelector(".phone");
+        const dropDown = document.querySelector(".lenyilo");
+        menu.addEventListener("click", menuX)
+
+        function menuX() {
+            this.classList.toggle("change");
+
+            if (dropDown.style.display === "flex") {
+                dropDown.style.display = "none";
+            }
+            else {
+                dropDown.style.display = "flex";
+            }
+
+        }
+
+        //Felhasználó név megjelenítése, ha már bejelentkezett
+        fetch("./idopont2.php")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Hiba a kérésben!");
+                }
+                return response.json();
+
+            })
+            .then(datas => {
+                
+                //Ha nincs bejelentkezve, akkor átdobja a login.html oldalra
+
+                if (datas["user"] != "Felhasználó nem található!") {
+                    //Kiírjuk a felhasználó nevét
+                    const bejelentkezesmenu = document.querySelector(".bejelentkezes");
+                    const bejelentkezett = document.querySelector(".bejelentkezett");
+                    const nev = document.querySelector(".nev");
+                    if (datas["user"] === "Felhasználó nem található!") {
+                        bejelentkezesmenu.classList.add("flex");
+                        bejelentkezett.classList.add("hidden");
+                    }
+                    else {
+                        bejelentkezesmenu.classList.add("hidden");
+                        bejelentkezett.classList.add("flex");
+                        nev.innerHTML = datas["user"];
+                        document.querySelector("#belep").classList.add("hidden");
+                        document.querySelector("#regisztral").classList.add("hidden");
+                    }
+
+                    
+
+
+
+                    if (datas["hairdresser"] === 1) {
+                        document.querySelector("#user").classList.add("hidden");
+                        document.querySelector("#hairdresser").classList.add("flex");
+                        document.querySelector("#leidopontjaim").classList.add("hidden");
+                        document.querySelector("#leidopontok").classList.add("flex");
+                    }
+                    else {
+                        document.querySelector("#user").classList.add("flex");
+                        document.querySelector("#hairdresser").classList.add("hidden");
+                        document.querySelector("#hairdresser").classList.remove("flex");
+                        document.querySelector("#leidopontjaim").classList.add("flex");
+                        document.querySelector("#leidopontok").classList.add("hidden");
+                        document.querySelector("#leidopontok").classList.remove("flex");
+                    }
+                }
+                else {
+                    alert("AZ időpontfoglaláshoz elősször be kell jelentkezni!")
+                    location.href = "login.html";
+                }
+
+            })
+
+
+        //Kijelentkezés: 
+        const kijelentkezes = document.querySelector(".kijelentkezes");
+
+        kijelentkezes.addEventListener("click", () => {
+            location.href = "./main.html";
+            const bejelentkezesmenu = document.querySelector(".bejelentkezes");
+            const bejelentkezett = document.querySelector(".bejelentkezett");
+            fetch("./logout.php")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Hiba a kérésben!");
+                    }
+                    return response.json();
+                })
+                .then(datas => {
+                    
+                    if (datas["logout"] === "Sikeres kijelentkezés!") {
+                        bejelentkezett.classList.add("hidden");
+                        bejelentkezett.classList.remove("flex");
+                        bejelentkezesmenu.classList.add("flex");
+                        document.querySelector("#belep").classList.add("flex");
+                        document.querySelector("#regisztral").classList.add("flex");
+                        document.querySelector("#leidopontjaim").classList.add("hidden");
+                        document.querySelector("#leidopontjaim").classList.remove("flex");
+                        document.querySelector("#leidopontok").classList.add("hidden");
+                        document.querySelector("#leidopontok").classList.remove("flex");
+                    }
+                })
+                .catch(error => console.log(error));
+        })
+
+
+
+        const actualday = new Date();
+        let year = actualday.getFullYear();
+        let month = actualday.getMonth() + 1;
+        let day = actualday.getDate();
+
+        Generate(month);
+
+        const container = document.querySelector(".container");
+        const buttonb = document.querySelector("#previousbutton");
+        const buttona = document.querySelector("#actualbutton");
+        const buttonj = document.querySelector("#nextbutton");
+        const kivhonap = document.querySelector(".kivhonap");
+
+        buttonb.addEventListener("click", () => {
+            container.innerHTML = "";
+            month -= 1;
+            if (month < 1) {
+                year -= 1;
+                month = 12;
+            }
+            Generate(month);
+
+            if (month < 10) {
+                kivhonap.innerHTML = year + ". 0" + month + ". hónap";
+            }
+            else {
+                kivhonap.innerHTML = year + ". " + month + ". hónap";
+            }
+            
+
+        })
+
+        buttona.addEventListener("click", () => {
+            container.innerHTML = "";
+            month = actualday.getMonth() + 1;
+            year = actualday.getFullYear();
+            Generate(month);
+
+            if (month < 10) {
+                kivhonap.innerHTML = year + ". 0" + month + ". hónap";
+            }
+            else {
+                kivhonap.innerHTML = year + ". " + month + ". hónap";
+            }
+            
+
+        })
+
+        buttonj.addEventListener("click", () => {
+            container.innerHTML = "";
+            month += 1;
+            if (month > 12) {
+                year += 1;
+                month = 1;
+            }
+            Generate(month);
+            
+            
+            if (month < 10) {
+                kivhonap.innerHTML = year + ". 0" + month + ". hónap";
+            }
+            else {
+                kivhonap.innerHTML = year + ". " + month + ". hónap";
+            }
+        })
+
+        //Naptár generálása
+        function Generate(month) {
+            const container = document.querySelector(".container");
+            const currentDate = new Date(year, month - 1, 1);
+            const daysOfWeek = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+            const firstDayOfMonth = currentDate.getDay();
+            const firstDayName = daysOfWeek[firstDayOfMonth];
+            const kivhonap = document.querySelector(".kivhonap");
+            // Hány napos a hónap
+            const actualMonthLength = new Date(year, month, 0).getDate();
+            let ures = daysOfWeek.indexOf(firstDayName);
+            //Üres cellák generálása
+            for (let i = 0; i < (ures - 1); i++) {
+                const cella = document.createElement("div");
+                cella.id = "blank";
+                cella.innerHTML = "";
+                cella.classList.add("cella");
+                container.appendChild(cella);
+            }
+
+            const cellakTartalma = [];
+            //Számozott cellák generálása
+            for (let i = 1; i < actualMonthLength + 1; i++) {
+                const cella = document.createElement("div");
+                cella.id = i;
+                cella.innerHTML = i;
+                cella.classList.add("cella");
+                container.appendChild(cella);
+                cellakTartalma.push(cella);
+                Elmult(year, month, cella.id, cella);
+            }
+        
+            Ma(currentDate.getFullYear(), month, actualMonthLength, cellakTartalma);
+            if (month < 10) {
+                kivhonap.innerHTML = year + ".0" + month + ". hónap";
+            }
+            else {
+                kivhonap.innerHTML = year + "." + month + ". hónap";
+            }
+            kivalasztas();
+
+        }
+
+        //Mai nap kiválasztása
+        function Ma(ev, honap, actualMonthLength, cella) {
+            
+            let current = new Date();
+            let cev = current.getFullYear();
+            let chonap = current.getMonth() + 1;
+            let cnap = current.getDate();
+            if (ev === cev && honap === chonap) {
+                
+                for (let i = 0; i < actualMonthLength; i++) {
+                    if (parseInt(cella[i].id) === cnap) {
+                        
+                        cella[i].classList.add("mainap");
+                    }
+                }
+
+            }
+
+        }
+
+
+        //Az elmúlt időpontot választja ki
+        function Elmult(ev, honap, nap, cella) {
+            let current = new Date();
+            let cev = current.getFullYear();
+            let chonap = current.getMonth() + 1;
+            let cnap = current.getDate();
+        
+            // Az aktuális dátum összehasonlítása a paraméterként kapott dátummal
+            if (ev < cev || (ev === cev && (honap < chonap || (honap === chonap && nap < cnap)))) {
+                cella.classList.add("elmult");
+                cella.id = "Elmúlt";
+                cella.removeEventListener("click", () => {
+                    //Nem lehet elmúlt napra időpontot foglalni, ezért lekerül róla a kattinthatóság
+                });
+            }
+        }
+        
+
+
+
+        let kivnap;
+        //Kiválasztja a foglalni kívánt napot
+        function kivalasztas()
+        {
+            const allDays = document.querySelectorAll(".cella");
+            allDays.forEach(day => {
+                day.addEventListener("click", () => {
+                    document.querySelector("#finishtag").classList.add("hidden");
+                    document.querySelector(".choose2").classList.add("hidden");
+                    document.querySelector(".dates").classList.add("hidden");
+                    allDays.forEach(d => d.classList.remove("kivalasztott")); // Visszaállítjuk az előző kiválasztást
+                    day.classList.add("kivalasztott");
+                    if (month < 10) 
+                    {
+                        if(day.id<10)
+                        {
+                            kivnap =year+".0"+month+".0"+parseInt(day.id)+".";
+                        }
+                        else 
+                        {
+                            kivnap =year+".0"+month+"."+parseInt(day.id)+".";
+                        }
+                    }
+                    else 
+                    {
+                        
+                        if(day.id<10)
+                        {
+                            kivnap =year+"."+month+".0"+parseInt(day.id)+".";
+                        }
+                        else
+                        {
+                            kivnap =year+"."+month+"."+parseInt(day.id)+".";
+                        }
+                    }
+                    idopontok(kivnap);
+
+                    
+                    
+                     // Szabad időpontok kiválasztása
+                    document.querySelector(".timeChoose").style.display = "flex";
+                    Ora();
+                });
+            });
+        }
+        const tomb = ["07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00"];
+
+function idopontok(kivnap)
+{
+    fetch("./foglaltidopont.php")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Hiba a kérésben!");
+            }
+            return response.json();
+        })
+        .then(datas => {
+            
+            
+            let foglaltidopontok_datas=[];
+            for (let i = 0; i < datas.foglalt.length; i++)
+            {
+                
+                
+                for (let item of tomb)
+                {
+                    let isFoglalt = false;
+
+                    if (datas.foglalt[i].datum === kivnap)
+                    {
+                        if(datas.foglalt[i].ido === item)
+                        {
+                            foglaltidopontok_datas.push(item);
+                        }
+                    }
+                }
+
+            }
+            TimeGenerate(foglaltidopontok_datas);
+        })
+        .catch(error => console.log(error));
+}
+
+function TimeGenerate(foglalt) {
+    const dates = document.querySelector(".dates");
+    // Minden időelemet töröljünk a listáról
+    dates.innerHTML = "";
+    // A szabad időpontokat tartalmazó tömb létrehozása
+    let szabad = tomb.filter(ido => !foglalt.includes(ido));
+    // A szabad időpontok sorba rendezése
+    szabad.sort();
+    // Az időelemek létrehozása
+    szabad.forEach(szabadIdo => {
+        const timeElement = document.createElement('div');
+        timeElement.textContent = szabadIdo;
+        timeElement.classList.add('time');
+        timeElement.style.display = "flex";
+        dates.appendChild(timeElement);
+    });
+}
+    let ido;
+        // Óra kiválasztása
+        function Ora()
+        {
+            
+            const finish = document.querySelector("#finish");
+            const choose = document.querySelector(".choose");
+            choose.addEventListener("click", () => {
+                document.querySelector(".dates").classList.remove("hidden");
+                const selectedTime = document.querySelectorAll(".time");
+                selectedTime.forEach(time => {
+                    time.addEventListener("click", () => {
+                        ido = time.innerHTML;
+                        finish.innerHTML = kivnap + " " + ido;
+                        document.querySelector(".dates").classList.add("hidden");
+                        document.querySelector("#finishtag").classList.remove("hidden");
+                        document.querySelector(".mitChoose").style.display = "flex";
+                        document.querySelector(".choose2").classList.remove("hidden");
+                        Szolgaltatas();
+                    });
+                });
+        });
+    }
+    let szolgaltatas="";
+        //Szolgáltatás kiválasztása
+        function Szolgaltatas()
+        {
+            const sendButton = document.querySelector(".sendButton");
+            
+            document.querySelector(".choose2").addEventListener("click", () => {
+                const mik = document.querySelector(".mik");
+                mik.classList.remove("hidden");
+                const mit =  document.querySelectorAll(".mit");
+                mit.forEach(mi=>{
+                    mi.addEventListener("click",()=>{
+                        
+                        document.querySelector("#finish2").innerHTML=mi.innerHTML;
+                        document.querySelector("#finish2tag").classList.remove("hidden");
+                        szolgaltatas = mi.innerHTML;
+                        document.querySelector(".mik").classList.add("hidden");
+                        sendButton.classList.remove("hidden");
+                    })
+                })
+            })
+        }
+
+        
+        //Időpont leadása
+        const sendButton = document.querySelector(".sendButton");
+        sendButton.addEventListener("click", () => {
+        
+            
+            fetch("./idopont.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/JSON" },
+                body: JSON.stringify({ "datum": kivnap, "ido": ido, "szolgaltatas" : szolgaltatas})
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Baj van a kérésben!");
+                    }
+                    return response.json();
+                })
+                .then(datas => {
+                    
+                    const success = document.querySelector(".success");
+                    if (datas["errorCode"] === 0)
+                    {
+                        
+                        success.innerHTML = `<div class="alert alert-success" role="alert">${datas["errorMessage"]}</div>`;
+                        
+                        setTimeout(() => {
+                            location.href = "./main.html";
+                        }, 2000)
+
+                    }
+                    else
+                    {
+                        success.innerHTML=`<div class="alert alert-danger" role="alert">
+                        ${datas["errorMessage"]}</div>`;
+                    }
+
+
+                }).catch(error => { console.log(error) })
+        })
+    </script>
+
+</body>
+
+</html>

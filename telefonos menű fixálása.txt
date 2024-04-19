@@ -1,0 +1,279 @@
+/////////////////////////////////////////////HTML////////////////////////////////////////////////
+
+        <nav>
+        <div class="menuk">
+            <div><a href="idopont.html">Időpontfoglalás</a></div>
+            <div><a href="araink.html">Áraink</a></div>
+            <div><a href="galeria.html">Galéria</a></div>
+        </div>
+        <div class="bejelentkezes">
+            <div><a href="./login.html">Belépés</a></div>
+            <div><a href="registration.html">Regisztráció</a></div>
+        </div>
+        <div class="bejelentkezett">
+            <div><a href="./idopontjaim.html" id="user">Időpontjaim</a></div>
+            <div><a href="./idopontok.html" id="hairdresser">Időpontok</a></div>
+            <img src="./img/profile-icon.jpg">
+            <div class="nev"></div>
+            <button class="kijelentkezes"><img src="./img/logout.png"></button>
+        </div>
+        <!--Telefonos menü-->
+        <div class="phone">
+            
+            <div class="menu">
+                <div class="menu1"></div>
+                <div class="menu2"></div>
+                <div class="menu3"></div>
+            </div>
+            <div class="lenyilo">
+                <a href="./idopont.html">Időpontfoglalás</a>
+                <a href="./araink.html">Áraink</a>
+                <a href="./galeria.html">Galéria</a>
+                <div id="leidopontjaim" style="justify-content: center; align-items: center;"><a href="./idopontjaim.html">Időpontjaim</a></div>
+                <div id="leidopontok" style="justify-content: center; align-items: center;"><a href="./idopontok.html">Időpontok</a></div>
+                <a href="./login.html" id="belep">Belépés</a>
+                <a href="./registration.html" id="regisztral">Regisztráció</a>
+
+            </div>
+        </div>
+
+
+    </nav>
+
+
+
+
+//////////////////////////////////////////////JS/////////////////////////////////////////////////
+
+
+//Telefonos menü megjelenítése:
+const menu = document.querySelector(".phone");
+const dropDown = document.querySelector(".lenyilo");
+menu.addEventListener("click", menuX)
+
+function menuX() {
+    this.classList.toggle("change");
+
+    if (dropDown.style.display === "flex") {
+        dropDown.style.display = "none";
+    }
+    else {
+        dropDown.style.display = "flex";
+    }
+
+}
+
+
+
+
+
+
+//Felhasználó név megjelenítése, ha már bejelentkezett
+fetch("./idopont2.php")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Hiba a kérésben!");
+        }
+        return response.json();
+
+    })
+    .then(datas => {
+        console.log("kiíras: ",datas);
+        //Ha nincs bejelentkezve, akkor átdobja a login.html oldalra
+
+        if (datas["user"] != "Felhasználó nem található!") {
+            //Kiírjuk a felhasználó nevét
+            const bejelentkezesmenu = document.querySelector(".bejelentkezes");
+            const bejelentkezett = document.querySelector(".bejelentkezett");
+            const nev = document.querySelector(".nev");
+            if (datas["user"] === "Felhasználó nem található!") {
+                bejelentkezesmenu.classList.add("flex");
+                bejelentkezett.classList.add("hidden");
+            }
+            else {
+                bejelentkezesmenu.classList.add("hidden");
+                bejelentkezett.classList.add("flex");
+                nev.innerHTML = datas["user"];
+                document.querySelector("#belep").classList.add("hidden");
+                document.querySelector("#regisztral").classList.add("hidden");
+            }
+
+            console.log(datas["user"]);
+
+
+
+            if (datas["hairdresser"] === 1) {
+                document.querySelector("#user").classList.add("hidden");
+                document.querySelector("#hairdresser").classList.add("flex");
+                document.querySelector("#leidopontjaim").classList.add("hidden");
+                document.querySelector("#leidopontok").classList.add("flex");
+            }
+            else {
+                document.querySelector("#user").classList.add("flex");
+                document.querySelector("#hairdresser").classList.add("hidden");
+                document.querySelector("#leidopontjaim").classList.add("flex");
+                document.querySelector("#leidopontok").classList.add("hidden");
+            }
+        }
+        else
+        {
+            document.querySelector("#user").classList.add("hidden");
+            document.querySelector("#hairdresser").classList.add("hidden");
+            document.querySelector("#leidopontok").classList.add("hidden");
+            document.querySelector("#leidopontjaim").classList.add("hidden");
+        }
+
+    })
+
+
+//Kijelentkezés: 
+const kijelentkezes = document.querySelector(".kijelentkezes");
+
+kijelentkezes.addEventListener("click", () => {
+    const bejelentkezesmenu = document.querySelector(".bejelentkezes");
+    const bejelentkezett = document.querySelector(".bejelentkezett");
+    fetch("./logout.php")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Hiba a kérésben!");
+            }
+            return response.json();
+        })
+        .then(datas => {
+            console.log(datas);
+            if (datas["logout"] === "Sikeres kijelentkezés!") {
+                bejelentkezett.classList.add("hidden");
+                bejelentkezett.classList.remove("flex");
+                bejelentkezesmenu.classList.add("flex");
+                document.querySelector("#belep").classList.add("flex");
+                document.querySelector("#regisztral").classList.add("flex");
+                document.querySelector("#leidopontjaim").classList.add("hidden");
+                document.querySelector("#leidopontjaim").classList.remove("flex");
+                document.querySelector("#leidopontok").classList.add("hidden");
+                document.querySelector("#leidopontok").classList.remove("flex");
+            }
+        })
+        .catch(error => console.log(error));
+})
+
+
+
+///////////////////////////////////CSS///////////////////////////////////////////////////
+
+#hairdresser, #user
+{
+    width: fit-content;
+    flex-direction: row;
+    align-items: center;
+    
+}
+.hidden
+{
+    display: none;
+}
+
+.flex
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (max-width:670px)
+{
+    *{margin: 0;padding: 0; box-sizing: border-box;}
+    .menuk
+    {
+        display: none;
+    }
+    .bejelentkezes 
+    {
+        display: none;
+    }
+    .phone
+    {
+       align-items: start;
+        display: block;
+        cursor: pointer;
+        margin-left: .5rem;
+        
+    } 
+    #hairdresser
+    {
+        display: none;
+    }
+    #user
+    {
+        display: none;
+    }
+
+    
+
+
+
+    .menu
+    {
+        margin-right: 10px;
+    }
+    .menu1, .menu2, .menu3
+    {
+        color: var(--white);
+        
+        width: 35px;
+        height: 5px;
+        background-color: var(--white);
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+      
+    .change .menu1
+    {
+        transform: translate(0, 11px) rotate(-45deg);
+    }
+      
+    .change .menu2
+    {
+        opacity: 0;
+    }
+      
+    .change .menu3
+    {
+        transform: translate(0, -11px) rotate(45deg);
+    }
+    
+    .lenyilo
+    {
+        background-color: var(--white);
+        margin-left: -.5rem;
+        
+    }
+    a
+    {
+        margin: 0;
+        padding: -2px;
+    }
+    
+    
+    .content
+    {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 30px;
+        gap: 30px;
+    }
+    .kép
+    {
+        display: flex;
+        justify-content: center;
+    }
+    .kép img
+    {
+        width: 50vw;
+        height: 50vw;
+    }
+    
+}
+
+
+
+

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <script src="login.js" defer></script>
+    <title>Bejelentkezés</title>
+
+    <style>
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-items: center;
+            flex-direction: column;
+            width: 30vw;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #11111f;
+            border-radius: 10px;
+        }
+
+        img {
+            width: 20vw;
+
+        }
+
+        .inputok {
+            display: grid;
+            grid-template-columns: max-content auto;
+            gap: 10px;
+            width: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inputok label {
+            text-align: right;
+            color: #c1a01e;
+        }
+
+        .btn {
+            margin-bottom: 1rem;
+            background-color: #c1a01e;
+            border-radius: 5px;
+            padding: 10px;
+            font-weight: bold;
+            border: none;
+            color: #ffffff;
+        }
+        .btn:hover
+        {
+            background-color: #c1a01e;
+            scale: 1.01;
+        }
+
+        h6 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .itt {
+            color: #c1a01e;
+            text-decoration: none;
+        }
+
+        @media (max-width:950px) 
+        {
+            .inputok {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: auto;
+                align-items: center;
+                justify-content: center;
+
+            }
+            .container
+            {
+                width: 50vw;
+            }
+        }
+        @media (max-width:500px) 
+        {
+            .container
+            {
+                width: 80vw;
+            }   
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="message"></h1>
+    <main>
+        <div class="container">
+            <img src="./img/hatternelkul.png" alt="kép">
+
+            <div class="inputok">
+                <!--Felhasználónév-->
+                <label for="username">Felhasználónév:</label>
+                <input type="text" class="form-control username" placeholder="Felhasználó név">
+
+                <!--Jelszó-->
+
+                <label for="password">Jelszó:</label>
+                <input type="password" class="form-control password" placeholder="Jelszó">
+            </div>
+
+            <!--Gomb-->
+
+            <button type="button" class="btn" id="login">Bejelentkezés</button>
+
+            <h6>Ha még nincs fiókja hozzon létre egyet <a class="itt" href="./registration.html">itt</a>.</h6>
+        </div>
+    </main>
+
+</body>
+
+</html>

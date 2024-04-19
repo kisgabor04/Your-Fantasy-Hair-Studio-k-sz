@@ -1,0 +1,521 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --grey: rgb(70, 70, 70);
+    --black: rgb(7, 7, 10);
+    --white: #f3f3f3;
+    --gold: #c1a01e;
+}
+
+.top {
+    background-image: linear-gradient(to right, var(--black), var(--grey));
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.top img {
+    height: 40vh;
+}
+
+nav {
+    background-color: var(--black);
+    height: 50px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    font-size: 24px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: .5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    height: 100%;
+
+}
+
+div a {
+    height: 100%;
+    width: 100vw;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+nav a:hover {
+    background-color: var(--grey);
+    color: var(--gold);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 5px;
+}
+
+.menuk {
+    margin-left: .5rem;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.bejelentkezes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: .5rem;
+}
+
+
+
+.phone {
+    display: none;
+
+}
+
+.lenyilo {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white);
+    width: 100%;
+    z-index: 2;
+    padding-top: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.lenyilo a {
+    text-decoration: none;
+    color: var(--black);
+    text-align: center;
+}
+
+.bejelentkezett
+{
+    display: none;
+    flex-direction: row;
+    gap: 5px;
+    color: var(--white);
+    margin-right: 10px;
+    align-items: center;
+}
+.bejelentkezett img
+{
+    width: 35px;
+    height: 35px;
+}
+.bejelentkezett button
+{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+main
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content
+{
+    width: 70vw;
+}
+
+.dayname {
+    
+    text-align: center;
+    align-items: center;
+}
+.naptar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}
+.inactive
+{
+    pointer-events: none;
+    cursor: no-drop;
+}
+
+.days
+{
+    display: flex;
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    width: 400px;
+    
+    justify-content: center;
+    align-items: center;
+
+}
+.container {
+
+    
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons
+{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 400px;
+    justify-content: center;
+    background-color: var(--black);
+    height: 50px;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+    
+}
+.buttons button
+{
+    background-color: var(--gold);
+    height: 25px;
+    width: 25px;
+    border-radius: 20%;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 18px;
+    
+}
+.cella {
+    
+    width: 49px;
+    height: 49px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+.cella:hover
+{
+    width: 49px;
+    height: 49px;
+    background-color: var(--grey);
+    color: #f3f3f3;
+    border-radius: 5px;
+}
+#blank
+{
+    pointer-events: none;
+    border: none;
+}
+.mainap
+{
+    background-color: var(--gold);
+    border-radius: 100%;
+}
+
+.elmult
+{
+    pointer-events: none;
+    cursor: no-drop;
+    background-color: var(--grey);
+}
+.kivalasztott
+{
+    background-color:var(--black);
+    color: var(--white);
+    
+}
+
+
+.hidden
+{
+    display: none;
+}
+.container2
+{
+    display: flex;
+    flex-direction: column;
+    
+}
+.idok
+{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+
+}
+.idok div
+{
+    padding-right: 10px;
+    width: fit-content;
+}
+
+h1
+{
+    margin-bottom: 20px;
+}
+.honap
+{
+    display: flex;
+    justify-content: center;
+}
+
+.dates
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.time
+{
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 400px;
+}
+
+.time:hover
+{
+    background-color: var(--grey);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.bejelentkezett
+{
+    
+    flex-direction: row;
+    gap: 5px;
+    color: var(--white);
+    margin-left: 10px;
+    align-items: center;
+}
+.bejelentkezett img
+{
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    align-items: start;
+}
+.bejelentkezett button
+{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+
+
+
+footer
+{
+    background-color: var(--black);
+    color: var(--white);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+.hidden
+{
+    display: none;
+}
+
+.flex
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (max-width:670px)
+{
+    *{margin: 0;padding: 0; box-sizing: border-box;}
+    .menuk
+    {
+        display: none;
+    }
+    .bejelentkezes 
+    {
+        display: none;
+    }
+    .phone
+    {
+       align-items: start;
+        display: block;
+        cursor: pointer;
+        margin-left: .5rem;
+        
+    } 
+    
+
+    
+
+
+
+    .menu
+    {
+        margin-right: 10px;
+    }
+    .menu1, .menu2, .menu3
+    {
+        color: var(--white);
+        
+        width: 35px;
+        height: 5px;
+        background-color: var(--white);
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+      
+    .change .menu1
+    {
+        transform: translate(0, 11px) rotate(-45deg);
+    }
+      
+    .change .menu2
+    {
+        opacity: 0;
+    }
+      
+    .change .menu3
+    {
+        transform: translate(0, -11px) rotate(45deg);
+    }
+    
+    .lenyilo
+    {
+        background-color: var(--white);
+        margin-left: -.5rem;
+        
+    }
+    a
+    {
+        margin: 0;
+        padding: -2px;
+    }
+
+    .naptar
+    {
+        width: 80vw;
+        margin-left: 10px;
+    }
+
+
+    .container
+    {
+        width: 80vw;
+        gap: 5px;
+    }
+    .idok
+    {
+        font-size: 3vw;
+    }
+    .buttons
+    {
+        width: 80vw;
+
+    }
+    .days
+    {
+        width: 80vw;
+    }
+    
+    h1{
+        margin-bottom: 0;
+        font-size: 5vw;
+    }
+    .content
+    {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 30px;
+        gap: 30px;
+    }
+    .kép
+    {
+        display: flex;
+        justify-content: center;
+    }
+    .kép img
+    {
+        width: 50vw;
+        height: 50vw;
+    }
+    
+}
+
+@media (max-width:440px)
+{
+    .cella
+    {
+        width: 10vw;
+        height: 10vw;
+        font-size: 5vw;
+    }
+    .top img{
+        width: 80vw;
+        height: 80vw;
+    }
+    .days
+    {
+        font-size: 5vw;
+        padding: 3px;
+        gap: 5px;
+    }
+    .bejelentkezett
+    {
+        font-size: 7vw;
+
+    }
+    .top img{
+        width: 80vw;
+        height: 80vw;
+    }
+    .bejelentkezett img
+    {
+        width: 9vw;
+        height: 9vw;
+    }
+    .bejelentkezett button
+    {
+        width: 10vw;
+        height: 10vw;
+    }
+}
