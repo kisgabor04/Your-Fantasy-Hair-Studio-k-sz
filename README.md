@@ -24,6 +24,7 @@ A projekt állományit ezen az url-címenérheti el: https://github.com/kisgabor
   
 ## Használat
 - Nyissa meg a böngészőt a "127.0.0.1:3000/main.html" URL-t a webalkalmazás eléréséhez!
+- Állítsa át a böngészőt sötét módba
 
 ## Fejlesztési technológiák
 - HTML/CSS/JavaScript
